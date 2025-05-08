@@ -1,0 +1,16 @@
+body {
+    background: rgb(238, 238, 22)
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+p {
+    font-size: 40px;
+    padding: 0% 10% 0% 10%;
+    margin: 7% 0% 7% 0%;
+    align-self: center;
+}
