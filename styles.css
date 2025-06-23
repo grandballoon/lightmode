@@ -11,6 +11,11 @@ background: linear-gradient(90deg,rgba(255, 115, 215, 1) 0%, rgba(255, 195, 0, 1
     align-items: center;
 }
 
+#pricing-row {
+    display: flex;
+    flex-direction: row;
+}
+
 h1 {
     font-size: 8vw;
     font-family: "Oswald";
