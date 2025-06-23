@@ -26,7 +26,8 @@ h2 {
 p {
     font-size: 4vw;
     font-weight: 700;
-    padding: 10px 0px 0px 10px;
+    font-family: "Quattrocento", serif;
+    padding: 5px 0px 0px 10px;
     margin: 3% 10% 3% 10%;
 
 }
