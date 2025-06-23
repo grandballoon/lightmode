@@ -11,11 +11,6 @@ background: linear-gradient(90deg,rgba(255, 115, 215, 1) 0%, rgba(255, 195, 0, 1
     align-items: center;
 }
 
-.price {
-    padding: 5px 0px 0px 5px;
-    margin: 500px;
-}
-
 h1 {
     font-size: 8vw;
     font-family: "Oswald";
@@ -33,7 +28,7 @@ p {
     font-family: "Quattrocento", serif;
     font-weight: 700;
     padding: 10px 0px 0px 10px;
-    margin: 6% 10% 6% 10%;
+    margin: 3% 10% 3% 10%;
 
 }
 
