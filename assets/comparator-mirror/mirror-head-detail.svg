@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="cm-head" viewBox="0 0 480 300" width="480" height="300" role="img" aria-label="Detail at twice scale of the mirror head: a sliding collar on the leaf underside carries a rod at 45 degrees ending in a small circular mirror aimed back at the vertex between page and overhang.">
+  <style>
+    #cm-head .fx{fill:#16150F;stroke:#F5F1E9;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round}
+    #cm-head .hair{fill:none;stroke:#9C988E;stroke-width:1;stroke-linecap:round}
+    #cm-head .lead{fill:none;stroke:#9C988E;stroke-width:1;stroke-linecap:round}
+    #cm-head .ambln{fill:none;stroke:#FACA47;stroke-width:1.4;stroke-linecap:round}
+    #cm-head .t{font-family:'Space Mono',ui-monospace,SFMono-Regular,monospace;font-size:10px;letter-spacing:1.1px;fill:#A9A49A}
+    #cm-head .ta{font-family:'Space Mono',ui-monospace,SFMono-Regular,monospace;font-size:14px;letter-spacing:1px;fill:#FACA47}
+  </style>
+  <rect x="0.5" y="0.5" width="479" height="299" rx="18" fill="#1B1A13" stroke="#EBE7DF" stroke-opacity="0.14"/>
+
+  <!-- notebook edge and clamp plate -->
+  <rect class="fx" x="360" y="112" width="34" height="168"/>
+  <g class="hair" opacity="0.75">
+    <line x1="366" y1="120" x2="366" y2="272"/>
+    <line x1="372" y1="120" x2="372" y2="272"/>
+    <line x1="378" y1="120" x2="378" y2="272"/>
+    <line x1="384" y1="120" x2="384" y2="272"/>
+    <line x1="390" y1="120" x2="390" y2="272"/>
+  </g>
+  <path class="fx" d="M394 112 L394 280 L416 280 L416 112"/>
+
+  <!-- the leaf, running off frame -->
+  <path class="fx" d="M30 90 L416 90 L416 112 L30 112"/>
+
+  <!-- sliding collar with thumbscrew -->
+  <rect class="fx" x="290" y="112" width="40" height="22" rx="3"/>
+  <circle cx="310" cy="123" r="6.5" fill="#FACA47" stroke="#F5F1E9" stroke-width="1.6"/>
+
+  <!-- rod at 45 degrees -->
+  <path class="fx" d="M305.76 129.76 L235.76 199.76 L244.24 208.24 L314.24 138.24 Z"/>
+
+  <!-- mirror: face square to the rod, looking back at the vertex -->
+  <g transform="rotate(45 240 204)">
+    <ellipse class="fx" cx="240" cy="204" rx="53" ry="13"/>
+    <ellipse cx="240" cy="204" rx="48" ry="8.5" fill="#FACA47" stroke="#F5F1E9" stroke-width="1.8"/>
+  </g>
+
+  <!-- 45 degrees off the leaf -->
+  <path class="ambln" d="M250 112 A60 60 0 0 0 267.57 154.43"/>
+  <text class="ta" x="222" y="140" text-anchor="middle">45&#176;</text>
+
+  <path class="lead" d="M288 120 L194 120"/>
+  <text class="t" x="190" y="124" text-anchor="end">SLIDING COLLAR</text>
+
+  <path class="lead" d="M213 193 L164 232"/>
+  <text class="t" x="160" y="236" text-anchor="end">&#216;34 MIRROR</text>
+
+  <text class="t" x="34" y="288">MIRROR HEAD, 2&#215;</text>
+</svg>
