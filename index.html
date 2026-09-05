@@ -1,60 +1,463 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="styles.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lightmode</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#16150F" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #16150F; }
+  * { box-sizing: border-box; }
+  a { color: oklch(0.86 0.152 88); text-decoration: none; border-bottom: 1px solid oklch(0.86 0.152 88 / 0.35); }
+  a:hover { color: oklch(0.93 0.13 92); border-bottom-color: oklch(0.93 0.13 92 / 0.8); }
+  ::selection { background: oklch(0.86 0.152 88 / 0.3); }
+  @keyframes lm-lava-drift {
+    0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+    18%  { transform: translate3d(-84px, 74px, 0) rotate(26deg) scale(1.07); }
+    37%  { transform: translate3d(-36px, 168px, 0) rotate(-12deg) scale(0.95); }
+    55%  { transform: translate3d(72px, 196px, 0) rotate(14deg) scale(1.11); }
+    74%  { transform: translate3d(96px, 88px, 0) rotate(-20deg) scale(1.01); }
+    88%  { transform: translate3d(38px, 22px, 0) rotate(9deg) scale(1.05); }
+    100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  }
+  @keyframes lm-lava-morph {
+    0%, 100% { border-radius: 46% 54% 50% 50% / 53% 45% 55% 47%; }
+    20% { border-radius: 54% 46% 44% 56% / 47% 55% 45% 53%; }
+    40% { border-radius: 44% 56% 55% 45% / 57% 43% 57% 43%; }
+    60% { border-radius: 52% 48% 57% 43% / 44% 54% 46% 56%; }
+    80% { border-radius: 48% 52% 45% 55% / 55% 47% 53% 45%; }
+  }
+  @keyframes lm-lava-travel {
+    0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+    22%  { transform: translate3d(104px, 138px, 0) rotate(15deg) scale(1.06); }
+    45%  { transform: translate3d(216px, 272px, 0) rotate(-10deg) scale(0.96); }
+    68%  { transform: translate3d(330px, 408px, 0) rotate(19deg) scale(1.10); }
+    100% { transform: translate3d(440px, 548px, 0) rotate(-7deg) scale(1.04); }
+  }
+  @keyframes lm-lava-sway {
+    0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+    25%  { transform: translate3d(-108px, 26px, 0) rotate(-8deg) scale(1.05); }
+    52%  { transform: translate3d(-214px, -18px, 0) rotate(6deg) scale(0.97); }
+    78%  { transform: translate3d(-306px, 30px, 0) rotate(-11deg) scale(1.08); }
+    100% { transform: translate3d(-388px, -12px, 0) rotate(5deg) scale(1.03); }
+  }
+  @media (max-width: 900px) {
+    [data-r="split"] { grid-template-columns: 1fr !important; gap: 34px !important; }
+    [data-r="pad"], [data-r2="pad"] { padding-left: 24px !important; padding-right: 24px !important; }
+    [data-r2="cta"] { padding: 40px 28px !important; border-radius: 30px !important; }
+    [data-r="head"] { padding: 26px 22px !important; grid-template-columns: 40px minmax(0,1fr) auto !important; gap: 16px !important; }
+    [data-r="detail"] { padding: 0 22px 26px 22px !important; }
+  }
+
+  .lm-cta-dark:hover { background: #241F14 !important; }
+  .lm-field {
+    font-family: 'Gabarito', system-ui, sans-serif; font-size: 15px; font-weight: 400;
+    width: 100%; min-width: 0; box-sizing: border-box;
+    padding: 14px 18px; border-radius: 999px;
+    background: transparent; color: #16150F;
+    border: 1px solid oklch(0.28 0.03 80 / 0.32);
+    outline: none; transition: border-color .2s ease;
+  }
+  textarea.lm-field { border-radius: 22px; min-height: 116px; line-height: 1.5; resize: vertical; }
+  .lm-field::placeholder { color: oklch(0.45 0.03 80); }
+  .lm-field:focus { border-color: #16150F; }
+  .lm-label {
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: oklch(0.32 0.03 80);
+  }
+  .lm-sub-btn { cursor: pointer; }
+  .lm-sub-btn[disabled] { opacity: 0.55; cursor: default; }
+  .lm-form-status {
+    margin: 0; min-height: 15px;
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: oklch(0.32 0.03 80);
+  }
+  .lm-form-status[data-state="error"] { color: oklch(0.45 0.18 28); }
+  .lm-card:hover { border-color: oklch(0.86 0.152 88 / 0.5) !important; background: #1F1D15 !important; }
+  .lm-head { cursor: pointer; }
+  .lm-head.is-open .lm-icon { transform: rotate(135deg) !important; }
+
+  #lm-dev-chit {
+    position: fixed; right: 22px; bottom: 22px; z-index: 40;
+    display: flex; align-items: center; gap: 10px;
+    padding: 11px 17px; border-radius: 999px;
+    background: rgba(27, 26, 19, 0.82); backdrop-filter: blur(8px);
+    border: 1px solid oklch(0.86 0.152 88 / 0.32);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: oklch(0.86 0.152 88);
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease;
+  }
+  #lm-dev-chit.is-visible { opacity: 1; transform: translateY(0); }
+  #lm-dev-chit .lm-chit-dot { width: 8px; height: 8px; border-radius: 50%; background: oklch(0.86 0.152 88); flex: none; }
+  @media (max-width: 900px) {
+    #lm-dev-chit { right: 14px; bottom: 14px; padding: 9px 14px; font-size: 10px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-lm="blob"] { animation: none !important; }
+  }
+</style>
 </head>
-    <body>
-<div class="flex-container">
+<body>
+<div style="background:#16150F; color:oklch(0.93 0.012 85); font-family:'Newsreader',Georgia,serif; overflow-x:hidden; position:relative">
 
-    <h1>Lightmode</h1>
-   <h4>Lightmode's first release, turtle graphics in Lua, is available as a no-cost download on <a href="https://lightmode-lightmode.itch.io/lua-turtle">itch.io</a> or via this <a href="https://drive.google.com/file/d/1MkWgLFkOZ4yMUG9cRloBfhsrlHXt31iH/view?usp=sharing">google drive link.</a> </h3>
-    <h2>Schedule a free intro call <a href="https://calendly.com/luke-conley/lightmode-intro">here.</a></h2>
-    <p>
-        We often talk about code as if it were fast fashion: a world of trends and waste where everything is constantly changing. 
-    </p> 
+  
+    <div data-lm="blob" style="position:absolute; top:-260px; right:-200px; width:720px; height:720px; border-radius:46% 54% 50% 50% / 53% 45% 55% 47%; background:oklch(0.86 0.152 88 / 0.2109); filter:blur(3px); animation:lm-lava-drift 78s cubic-bezier(0.45,0.05,0.35,0.95) infinite, lm-lava-morph 47s ease-in-out infinite; will-change:transform,border-radius; pointer-events:none"></div>
+    <div data-lm="blob" style="position:absolute; top:900px; left:-140px; width:560px; height:560px; border-radius:46% 54% 50% 50% / 53% 45% 55% 47%; background:oklch(0.86 0.152 88 / 0.2109); filter:blur(3px); animation:lm-lava-travel 78s cubic-bezier(0.45,0.05,0.35,0.95) infinite alternate, lm-lava-morph 47s ease-in-out infinite; will-change:transform,border-radius; pointer-events:none"></div>
+  
 
-    <p>
-        But code is really more like <em>sculpture</em>. Rather than "making more stuff," engineering is about chipping 
-        away towards the elegant expression of an <em>idea.</em>
-    </p>
-    
-    <p>
-        You don't need a math degree or a coding bootcamp to do this. 
-        You just need the right perspective.
-    </p>
+  <header style="max-width:1180px; margin:0 auto; padding:36px 40px 0; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2">
+    <div style="display:flex; align-items:center; gap:14px">
+      <div style="width:26px; height:26px; border-radius:46% 54% 51% 49% / 55% 44% 56% 45%; background:oklch(0.86 0.152 88)"></div>
+      <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.01em; color:oklch(0.96 0.01 85)">Lightmode</span>
+    </div>
+  </header>
 
-    <p>
-        For artists, this is not a new idea. Books like Betty Edwards' wonderful <em>Drawing on the Right Side of the Brain</em> 
-        have shared simple, effective ways of learning to draw for decades.
-    </p>
+  <section data-r="pad" style="max-width:1180px; margin:0 auto; padding:110px 40px 96px; position:relative; z-index:2">
+    <div id="lm-dev-flag" style="display:flex; align-items:center; gap:12px; margin-bottom:34px">
+      <div style="width:9px; height:9px; border-radius:50%; background:oklch(0.86 0.152 88)"></div>
+      <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:oklch(0.86 0.152 88)">We're still under development.</span>
+    </div>
+    <h1 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:clamp(52px,7.4vw,104px); line-height:0.94; letter-spacing:-0.035em; margin:0 0 40px; max-width:16ch; color:oklch(0.97 0.012 85); text-wrap:balance">Lightmode makes <span style="color:oklch(0.86 0.152 88)">polymath learning</span> fast &amp; affordable.</h1>
+    <p style="font-size:clamp(20px,2.1vw,27px); line-height:1.5; font-weight:300; max-width:56ch; margin:0; color:oklch(0.86 0.012 85); text-wrap:pretty">We do applied research on how one person can do many things well (for a cost normal people can afford).</p>
+  </section>
 
-    <p>That works for coding, too. Let's take an example: </p>
+  <section id="about" style="background:#12110C; position:relative; z-index:2">
+    <div data-r="split" data-r2="pad" style="max-width:1180px; margin:0 auto; padding:84px 40px; display:grid; grid-template-columns:minmax(0,0.9fr) minmax(0,1.35fr); gap:72px; align-items:start">
+      <div>
+        <h2 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:47.6px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 18px; color:oklch(0.96 0.012 85)">Our Strategy</h2>
+        <p style="font-family:'Space Mono',monospace; font-size:16.8px; line-height:1.8; letter-spacing:0.08em; text-transform:uppercase; color:oklch(0.68 0.015 85); margin:0">Affordable, efficient, and relaxed.</p>
+      </div>
+      <div style="display:grid; gap:26px; font-size:28px; line-height:1.62; font-weight:300; color:oklch(0.85 0.012 85); max-width:62ch">
+        <p style="margin:0; text-wrap:pretty">Our objective is to drive down <span style="color:oklch(0.86 0.152 88)">three costs of learning</span>: the amount of effort, the amount of money, and the amount of time.</p>
+        <p style="margin:0; text-wrap:pretty">We do this by building what the mathematician Seymour Papert called <em style="color:oklch(0.86 0.152 88)">Microworlds</em>—interactive objects that embody a skill, topic, or art form.</p>
+        <p style="margin:0; text-wrap:pretty">We design these objects and pair them with proven, plainspoken advice on <span style="color:oklch(0.86 0.152 88)">accelerated learning</span>.</p>
+      </div>
+    </div>
+  </section>
 
-    <p>
-        <em>Reducers</em> are a powerful coding pattern. A reducer takes a list of things, modifies them, and spits them back out again.
-    </p>
-    <p>
-        Writing a complex reducer is an advanced programming skill; they're a core part of many large apps, including Facebook and Uber.
+  <section id="research" data-r="pad" style="max-width:1180px; margin:0 auto; padding:96px 40px 40px; position:relative; z-index:2">
+    <div style="display:flex; align-items:end; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:44px">
+      <div style="display:grid; gap:14px">
+        <h2 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:clamp(34px,4.2vw,54px); line-height:1.02; letter-spacing:-0.03em; margin:0; color:oklch(0.97 0.012 85); max-width:20ch">What we've built so far</h2>
+      </div>
+    </div>
 
-    </p>
-    <p>
-        But a musician will recognize this pattern as imitative counterpoint (or maybe "autotune"). Here's Bon Iver's <em>Woods</em>, written here in valid Python:
-    </p>
-     <img src="./woods_algo.gif">
-    <p>
-        The mark of a good engineer is not "smartness"; it's the ability to recognize and work creatively with patterns. 
-    </p>
-    <p>
-        If you watch an experienced
-        programmer work, you'll notice how they speak, squint, 
-        and even <em>move their body</em> like a painter trying to "find" the contour of a subject's profile.
-    </p>
-    <p>
-        What we usually think of as "coding"—typing words into a text editor—is a secondary skill. Seeing the pattern comes first.
-    </p>
+    <div style="display:grid; gap:16px">
 
-    </body>
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">01</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Drawing</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <div style="display:grid; gap:14px; max-width:60ch">
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">We've built what we believe to be the world's first portable Comparator Mirror, a device popularized by the late, great David Hockney in his book and film <em>Secret Knowledge</em>.</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">Comparator mirrors allow novice artists to reproduce masterworks, as in the documentary Tim's Vermeer.</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">Notably, we've developed speedy ways to internalize the mirror's most useful features, making it possible to draw equally well without it.</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">Our current prototypes are portable, work with regular sketchbooks, and cost $10 or less to produce.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">02</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Music</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <div style="display:grid; gap:14px; max-width:60ch">
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">We're building a collection of free digital synthesizers that encapsulate music theory at a graduate level&#8212;think &#8220;the Omnichord, but for professionals.&#8221;</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">Rather than approaching the problem as building &#8220;toy synths&#8221; or prioritizing a preconceived notion of &#8220;accessibility,&#8221; we're following the Microworld dictum of &#8220;low threshold, high ceiling, wide walls.&#8221;</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">Our current iteration is <em>Perfecto: A Musical Microworld</em>, currently under active development.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">03</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Mathematics</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <div style="display:grid; gap:14px; max-width:60ch">
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">We built luaturtle.com, the first feature-complete port of Turtle Graphics for the Lua language. It's available free on the web.</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">Our next phases are a desktop port using the LOVE2D game engine, and a full, free, online Lua course.</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">We're also building new mathematical microworlds with the same &#8220;low threshold, high ceiling, wide walls&#8221; philosophy as Turtle Graphics. They work with both augmented reality and no screens at all.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">04</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Technical &amp; nonfiction writing</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">The death of college essays at the hands of ChatGPT is not difficult to understand: essay-writing went from a practical means to stress-test your understanding to another box that students have to check.</p> 
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">Nevertheless, the power of writing as a means of learning is as strong as it has ever been.</p> 
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">We've built a system to make college-level nonfiction writing a self-led tool for learning with a tight feedback loop, and you never have to insert AI-generated text into your writing.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">05</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Foreign Languages</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <div style="display:grid; gap:14px; max-width:60ch">
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">We're in the early stages of building a body of language learning curricula that can be used to teach any target language, in any native language, with minimal, optional use of AI, and the ability to work solely with human teachers.</p>
+              <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); text-wrap:pretty">Our target speed to proficiency, based on the work of the renowned language teacher Michel Thomas, is two weeks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" data-r="pad" style="max-width:1180px; margin:0 auto; padding:80px 40px 120px; position:relative; z-index:2">
+    <div data-r="split" data-r2="cta" style="border-radius:40px; background:oklch(0.86 0.152 88); color:#16150F; padding:66px 60px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:56px; align-items:start; position:relative; overflow:hidden">
+      <div data-lm="blob" style="position:absolute; right:-90px; bottom:-140px; width:340px; height:340px; border-radius:48% 52% 40% 60% / 52% 46% 54% 48%; background:oklch(0.9 0.13 90); animation:lm-lava-sway 78s cubic-bezier(0.45,0.05,0.35,0.95) infinite alternate, lm-lava-morph 47s ease-in-out infinite; will-change:transform,border-radius; pointer-events:none"></div>
+      <div style="position:relative">
+        <h2 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:clamp(60px,7.2vw,92px); line-height:1.04; letter-spacing:-0.03em; margin:0 0 16px; max-width:22ch">Let's connect.</h2>
+        <p style="margin:0; font-size:19px; line-height:1.55; font-weight:300; max-width:46ch; color:oklch(0.28 0.03 80)">Reach out about collaborating or road-testing our prototypes.</p>
+      </div>
+      <div style="position:relative">
+        <form id="contact-form" method="post" action="https://formspree.io/f/mljewdlo" style="display:grid; gap:18px">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+          <div style="display:grid; gap:8px">
+            <label class="lm-label" for="lm-name">Name</label>
+            <input class="lm-field" id="lm-name" type="text" name="name" autocomplete="name" required placeholder="Your name">
+          </div>
+          <div style="display:grid; gap:8px">
+            <label class="lm-label" for="lm-email">Email</label>
+            <input class="lm-field" id="lm-email" type="email" name="email" autocomplete="email" spellcheck="false" required placeholder="you@example.com">
+          </div>
+          <div style="display:grid; gap:8px">
+            <label class="lm-label" for="lm-message">Message</label>
+            <textarea class="lm-field" id="lm-message" name="message" rows="4" required placeholder="Tell us what you're working on."></textarea>
+          </div>
+          <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap">
+            <button type="submit" class="lm-cta-dark lm-sub-btn" style="border:none; font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:16px; background:#16150F; color:oklch(0.86 0.152 88); padding:15px 30px; border-radius:999px">Send message</button>
+            <p class="lm-form-status" id="lm-form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative; z-index:2">
+    <div data-r="pad" style="max-width:1180px; margin:0 auto; padding:32px 40px 44px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.6 0.015 85)">
+      <span>Lightmode — polymath learning research</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <div id="lm-dev-chit" aria-hidden="true">
+    <span class="lm-chit-dot"></span>
+    <span>We're still under development.</span>
+  </div>
+</div>
+<script>
+  (function () {
+    const heads = Array.from(document.querySelectorAll('.lm-head'));
+    const timers = new WeakMap();
+    const panelOf = (btn) => btn.nextElementSibling;
+
+    const closePanel = (btn) => {
+      if (!btn.classList.contains('is-open')) return;
+      const panel = panelOf(btn);
+      clearTimeout(timers.get(btn));
+      // A settled panel sits at max-height:none; re-pin it so the collapse animates.
+      if (panel.style.maxHeight === 'none') {
+        panel.style.maxHeight = panel.firstElementChild.scrollHeight + 'px';
+        void panel.offsetHeight;
+      }
+      requestAnimationFrame(() => { panel.style.maxHeight = '0px'; panel.style.opacity = '0'; });
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
+
+    const openPanel = (btn) => {
+      const panel = panelOf(btn);
+      panel.style.maxHeight = panel.firstElementChild.scrollHeight + 'px';
+      panel.style.opacity = '1';
+      btn.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      timers.set(btn, setTimeout(() => {
+        if (btn.classList.contains('is-open')) panel.style.maxHeight = 'none';
+      }, 500));
+    };
+
+    heads.forEach(btn => {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', () => {
+        const wasOpen = btn.classList.contains('is-open');
+        // Only one panel is open at a time.
+        heads.forEach(other => { if (other !== btn) closePanel(other); });
+        wasOpen ? closePanel(btn) : openPanel(btn);
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      heads.forEach(btn => {
+        if (!btn.classList.contains('is-open')) return;
+        const panel = panelOf(btn);
+        if (panel.style.maxHeight !== 'none') panel.style.maxHeight = panel.firstElementChild.scrollHeight + 'px';
+      });
+    });
+  })();
+
+  (function () {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('lm-form-status');
+    if (!form || !status) return;
+    const button = form.querySelector('button[type="submit"]');
+    const set = (text, state) => {
+      status.textContent = text;
+      if (state) status.setAttribute('data-state', state); else status.removeAttribute('data-state');
+    };
+    form.addEventListener('submit', async (event) => {
+      // Without fetch the form still posts normally to the form endpoint.
+      if (!window.fetch) return;
+      event.preventDefault();
+      button.disabled = true;
+      set('Sending\u2026');
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) throw new Error(response.status);
+        form.reset();
+        set('Thanks — we\u2019ll be in touch.');
+      } catch (err) {
+        set('Something went wrong. Please try again.', 'error');
+      } finally {
+        button.disabled = false;
+      }
+    });
+  })();
+
+  (function () {
+    const flag = document.getElementById('lm-dev-flag');
+    const chit = document.getElementById('lm-dev-chit');
+    if (!flag || !chit) return;
+    const show = () => { chit.classList.add('is-visible'); chit.setAttribute('aria-hidden', 'false'); };
+    const hide = () => { chit.classList.remove('is-visible'); chit.setAttribute('aria-hidden', 'true'); };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([entry]) => {
+        entry.isIntersecting ? hide() : show();
+      }).observe(flag);
+    } else {
+      const onScroll = () => {
+        (flag.getBoundingClientRect().bottom < 0) ? show() : hide();
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  })();
+
+  (function () {
+    // Eased in-page navigation: every same-page anchor glides to its section.
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    let frame = null;
+
+    const cancel = () => {
+      if (frame === null) return;
+      cancelAnimationFrame(frame);
+      frame = null;
+    };
+    // Any manual scroll input hands control straight back to the user.
+    ['wheel', 'touchstart', 'keydown'].forEach(type => {
+      window.addEventListener(type, cancel, { passive: true });
+    });
+
+    const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+
+    const glideTo = (target, done) => {
+      const start = window.pageYOffset;
+      const end = Math.min(target.getBoundingClientRect().top + start, maxScroll());
+      const distance = end - start;
+      if (Math.abs(distance) < 1) { done(); return; }
+      // Longer trips take longer, but never enough to feel sluggish.
+      const duration = Math.min(1100, Math.max(450, Math.abs(distance) * 0.6));
+      const t0 = performance.now();
+      cancel();
+      const step = (now) => {
+        const progress = Math.min(1, (now - t0) / duration);
+        window.scrollTo(0, start + distance * easeInOutCubic(progress));
+        if (progress < 1) {
+          frame = requestAnimationFrame(step);
+        } else {
+          frame = null;
+          done();
+        }
+      };
+      frame = requestAnimationFrame(step);
+    };
+
+    document.addEventListener('click', (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      const id = link.getAttribute('href').slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      event.preventDefault();
+      const settle = () => {
+        history.replaceState(null, '', '#' + id);
+        // Keep keyboard focus with the section the link pointed at.
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+      };
+      if (reduced.matches) {
+        window.scrollTo(0, Math.min(target.getBoundingClientRect().top + window.pageYOffset, maxScroll()));
+        settle();
+        return;
+      }
+      glideTo(target, settle);
+    });
+  })();
+</script>
+</body>
 </html>

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="cm-hero" viewBox="0 0 480 380" width="480" height="380" role="img" aria-label="Three-quarter view from below of the A5 comparator mirror: a leaf overhangs the notebook page like a roof, with a reference card clipped to its underside and a small circular mirror on a 45-degree rod near the vertex.">
+  <style>
+    #cm-hero .fx{fill:#16150F;stroke:#F5F1E9;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+    #cm-hero .fx2{fill:#1B1A13;stroke:#F5F1E9;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+    #cm-hero .hair{fill:none;stroke:#9C988E;stroke-width:1;stroke-linecap:round}
+    #cm-hero .amb{fill:none;stroke:#FACA47;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+    #cm-hero .t{font-family:'Space Mono',ui-monospace,SFMono-Regular,monospace;font-size:10px;letter-spacing:1.1px;fill:#A9A49A}
+  </style>
+  <defs>
+    <g id="apple" fill="none">
+      <path d="M0 -22 c -18 0 -30 14 -30 32 c 0 20 14 36 30 36 c 16 0 30 -16 30 -36 c 0 -18 -12 -32 -30 -32 z"/>
+      <path d="M0 -22 c 0 -8 2 -14 8 -18"/>
+      <path d="M8 -40 c 8 -4 16 0 16 6 c -8 4 -14 2 -16 -6 z"/>
+    </g>
+  </defs>
+  <rect x="0.5" y="0.5" width="479" height="379" rx="18" fill="#1B1A13" stroke="#EBE7DF" stroke-opacity="0.14"/>
+
+  <g transform="translate(20,10)">
+    <!-- notebook + clamp plate, one slab: front, right and underside faces -->
+    <path class="fx" d="M336 110 L349.8 116.4 L349.8 320.4 L336 314 Z"/>
+    <path class="fx" d="M196 314 L336 314 L349.8 320.4 L209.8 320.4 Z"/>
+    <line class="hair" x1="344.4" y1="113.9" x2="344.4" y2="317.9"/>
+    <line class="hair" x1="204.4" y1="317.9" x2="344.4" y2="317.9"/>
+    <rect class="fx" x="196" y="110" width="140" height="204"/>
+
+    <!-- page: rule lines, stitched spine, the drawing in progress -->
+    <g class="hair" opacity="0.7">
+      <line x1="212" y1="152" x2="322" y2="152"/>
+      <line x1="212" y1="174" x2="322" y2="174"/>
+      <line x1="212" y1="196" x2="322" y2="196"/>
+      <line x1="212" y1="218" x2="322" y2="218"/>
+      <line x1="212" y1="240" x2="322" y2="240"/>
+      <line x1="212" y1="262" x2="322" y2="262"/>
+      <line x1="212" y1="284" x2="322" y2="284"/>
+    </g>
+    <g class="hair" stroke-width="2" stroke-dasharray="7 11">
+      <line x1="204" y1="124" x2="204" y2="302"/>
+    </g>
+    <g class="amb"><use href="#apple" transform="translate(266,236)"/></g>
+
+    <!-- shallow cradle the notebook stands in -->
+    <path class="fx" d="M336 314 L349.8 320.4 L349.8 332.4 L336 326 Z"/>
+    <path class="fx" d="M196 326 L336 326 L349.8 332.4 L209.8 332.4 Z"/>
+    <rect class="fx2" x="196" y="314" width="140" height="12"/>
+
+    <!-- the leaf: nose and right flank, then the underside we look up into -->
+    <path class="fx" d="M94 62.4 L234 62.4 L234 53.4 L94 53.4 Z"/>
+    <path class="fx" d="M336 110 L234 62.4 L234 53.4 L336 101 Z"/>
+    <path class="fx" d="M336 110 L349.8 116.4 L349.8 107.4 L336 101 Z"/>
+    <path class="fx2" d="M196 110 L336 110 L234 62.4 L94 62.4 Z"/>
+
+    <!-- reference card clipped to the underside -->
+    <path class="fx" d="M210 104 L310 104 L268 84.4 L168 84.4 Z" stroke-width="1.8"/>
+    <g fill="none" stroke="#9C988E" stroke-width="1.4" vector-effect="non-scaling-stroke" stroke-linejoin="round">
+      <use href="#apple" transform="matrix(1 0 -0.6 -0.28 239 94) scale(0.42)"/>
+    </g>
+
+    <!-- collar, rod at 45 degrees, mirror facing back up at the leaf -->
+    <circle class="fx" r="1" transform="matrix(9 0 -7.2 -3.36 266.8 103.8)" vector-effect="non-scaling-stroke"/>
+    <path class="fx" d="M264.9 102.2 L238.6 133.8 L242.4 137 L268.7 105.4 Z"/>
+    <circle class="fx" r="1.15" transform="matrix(18 0 -7.6 -16.3 240.5 135.4)" vector-effect="non-scaling-stroke"/>
+    <circle r="1" transform="matrix(18 0 -7.6 -16.3 240.5 135.4)" fill="#FACA47" stroke="#F5F1E9" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+  </g>
+
+  <text class="t" x="34" y="368">THREE-QUARTER VIEW</text>
+</svg>

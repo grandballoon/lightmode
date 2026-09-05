@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Lightmode">
+  <!-- Wobbly circle: the header background blob, border-radius 44% 56% 49% 51% / 55% 42% 58% 45% -->
+  <path transform="translate(5 5) scale(0.9)"
+        fill="#FACA47"
+        d="M44 0 A56 42 0 0 1 100 42 A49 58 0 0 1 51 100 A51 45 0 0 1 0 55 A44 55 0 0 1 44 0 Z"/>
+</svg>

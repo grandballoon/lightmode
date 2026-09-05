@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lightmode</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#16150F" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: #16150F; }
+  * { box-sizing: border-box; }
+  a { color: oklch(0.86 0.152 88); text-decoration: none; border-bottom: 1px solid oklch(0.86 0.152 88 / 0.35); }
+  a:hover { color: oklch(0.93 0.13 92); border-bottom-color: oklch(0.93 0.13 92 / 0.8); }
+  ::selection { background: oklch(0.86 0.152 88 / 0.3); }
+  @keyframes lm-drift { 0% { transform: rotate(0deg) scale(1); } 50% { transform: rotate(180deg) scale(1.06); } 100% { transform: rotate(360deg) scale(1); } }
+  @keyframes lm-drift-2 { 0% { transform: rotate(0deg) scale(1.04); } 50% { transform: rotate(-180deg) scale(0.95); } 100% { transform: rotate(-360deg) scale(1.04); } }
+  @media (max-width: 900px) {
+    [data-r="split"] { grid-template-columns: 1fr !important; gap: 34px !important; }
+    [data-r="pad"], [data-r2="pad"] { padding-left: 24px !important; padding-right: 24px !important; }
+    [data-r2="cta"] { padding: 40px 28px !important; border-radius: 30px !important; }
+    [data-r="head"] { padding: 26px 22px !important; grid-template-columns: 40px minmax(0,1fr) auto !important; gap: 16px !important; }
+    [data-r="detail"] { padding: 0 22px 26px 22px !important; }
+    [data-r="nav"] { display: none !important; }
+  }
+
+  .lm-cta-primary:hover { background: oklch(0.92 0.14 90) !important; transform: translateY(-1px); }
+  .lm-cta-ghost:hover { border-color: oklch(0.86 0.152 88) !important; color: oklch(0.86 0.152 88) !important; }
+  .lm-cta-dark:hover { background: #241F14 !important; }
+  .lm-card:hover { border-color: oklch(0.86 0.152 88 / 0.5) !important; background: #1F1D15 !important; }
+  .lm-head { cursor: pointer; }
+  .lm-head.is-open .lm-icon { transform: rotate(135deg) !important; }
+</style>
+</head>
+<body>
+<div style="background:#16150F; color:oklch(0.93 0.012 85); font-family:'Newsreader',Georgia,serif; overflow-x:hidden; position:relative">
+
+  
+    <div style="position:absolute; top:-260px; right:-200px; width:720px; height:720px; border-radius:44% 56% 49% 51% / 55% 42% 58% 45%; background:oklch(0.86 0.152 88 / 0.09); filter:blur(2px); animation:lm-drift 70s linear infinite; pointer-events:none"></div>
+    <div style="position:absolute; top:900px; left:-320px; width:560px; height:560px; border-radius:52% 48% 38% 62% / 46% 60% 40% 54%; background:oklch(0.86 0.152 88 / 0.055); animation:lm-drift-2 90s linear infinite; pointer-events:none"></div>
+  
+
+  <header style="max-width:1180px; margin:0 auto; padding:36px 40px 0; display:flex; align-items:center; justify-content:space-between; position:relative; z-index:2">
+    <div style="display:flex; align-items:center; gap:14px">
+      <div style="width:26px; height:26px; border-radius:46% 54% 51% 49% / 55% 44% 56% 45%; background:oklch(0.86 0.152 88)"></div>
+      <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:21px; letter-spacing:-0.01em; color:oklch(0.96 0.01 85)">Lightmode</span>
+    </div>
+    <nav data-r="nav" style="display:flex; gap:30px; font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.72 0.015 85)">
+      <a href="#research" style="border:none; color:inherit">Research</a>
+      <a href="#about" style="border:none; color:inherit">About</a>
+      <a href="#contact" style="border:none; color:inherit">Contact</a>
+    </nav>
+  </header>
+
+  <section data-r="pad" style="max-width:1180px; margin:0 auto; padding:110px 40px 96px; position:relative; z-index:2">
+    <h1 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:clamp(52px,7.4vw,104px); line-height:0.94; letter-spacing:-0.035em; margin:0 0 40px; max-width:16ch; color:oklch(0.97 0.012 85); text-wrap:balance">Lightmode makes <span style="color:oklch(0.86 0.152 88)">polymath learning</span> fast &amp; affordable.</h1>
+    <p style="font-size:clamp(20px,2.1vw,27px); line-height:1.5; font-weight:300; max-width:56ch; margin:0 0 44px; color:oklch(0.86 0.012 85); text-wrap:pretty">We build tools that help anyone do many things well, for an amount of time and money that normal people can afford.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:16px; align-items:center">
+      <a href="#research" style="border:none; font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:16px; color:#16150F; background:oklch(0.86 0.152 88); padding:15px 30px; border-radius:999px" class="lm-cta-primary">See the disciplines</a>
+      <a href="#contact" style="border:none; font-family:'Gabarito',system-ui,sans-serif; font-weight:500; font-size:16px; color:oklch(0.9 0.012 85); padding:15px 26px; border-radius:999px; border:1px solid oklch(0.9 0.012 85 / 0.25)" class="lm-cta-ghost">Follow the research</a>
+    </div>
+  </section>
+
+  <section id="about" style="border-top:1px solid oklch(0.9 0.012 85 / 0.1); background:#12110C; position:relative; z-index:2">
+    <div data-r="split" data-r2="pad" style="max-width:1180px; margin:0 auto; padding:84px 40px; display:grid; grid-template-columns:minmax(0,0.9fr) minmax(0,1.35fr); gap:72px; align-items:start">
+      <div>
+        <h2 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:34px; line-height:1.1; letter-spacing:-0.02em; margin:0 0 18px; color:oklch(0.96 0.012 85)">The premise</h2>
+        <p style="font-family:'Space Mono',monospace; font-size:12px; line-height:1.8; letter-spacing:0.08em; text-transform:uppercase; color:oklch(0.68 0.015 85); margin:0">Placeholder subhead — one line naming the belief this all rests on.</p>
+      </div>
+      <div style="display:grid; gap:26px; font-size:20px; line-height:1.62; font-weight:300; color:oklch(0.85 0.012 85); max-width:62ch">
+        <p style="margin:0; text-wrap:pretty">Our strategy centers on what the mathematician Seymour Papert called <em>Microworlds</em>—interactive objects that embody a skill, topic, or art form.</p>
+        <p style="margin:0; text-wrap:pretty">We design these objects and pair them with proven, plainspoken advice on accelerated learning.</p>
+        <p style="margin:0; text-wrap:pretty">We place particular emphasis on low-cost methods and the public domain.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" data-r="pad" style="max-width:1180px; margin:0 auto; padding:96px 40px 40px; position:relative; z-index:2">
+    <div style="display:flex; align-items:end; justify-content:space-between; gap:40px; flex-wrap:wrap; margin-bottom:44px">
+      <h2 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:clamp(34px,4.2vw,54px); line-height:1.02; letter-spacing:-0.03em; margin:0; color:oklch(0.97 0.012 85); max-width:20ch">Six disciplines under study</h2>
+    </div>
+
+    <div style="display:grid; gap:16px">
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">01</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Drawing</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">Placeholder detail. Two or three sentences: the method, what it compresses, and the result you've seen so far.</p>
+            
+              <div style="height:200px; border-radius:18px; border:1px solid oklch(0.9 0.012 85 / 0.14); background:repeating-linear-gradient(115deg, oklch(0.86 0.152 88 / 0.07) 0 2px, transparent 2px 11px); display:grid; place-items:center">
+                <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.72 0.015 85)">clear-line illustration — drawing</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">02</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Painting</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">Placeholder detail. Two or three sentences: the method, what it compresses, and the result you've seen so far.</p>
+            
+              <div style="height:200px; border-radius:18px; border:1px solid oklch(0.9 0.012 85 / 0.14); background:repeating-linear-gradient(115deg, oklch(0.86 0.152 88 / 0.07) 0 2px, transparent 2px 11px); display:grid; place-items:center">
+                <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.72 0.015 85)">clear-line illustration — painting</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">03</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Music</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">Placeholder detail. Two or three sentences: the method, what it compresses, and the result you've seen so far.</p>
+            
+              <div style="height:200px; border-radius:18px; border:1px solid oklch(0.9 0.012 85 / 0.14); background:repeating-linear-gradient(115deg, oklch(0.86 0.152 88 / 0.07) 0 2px, transparent 2px 11px); display:grid; place-items:center">
+                <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.72 0.015 85)">clear-line illustration — music</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">04</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Mathematics</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">Placeholder detail. Two or three sentences: the method, what it compresses, and the result you've seen so far.</p>
+            
+              <div style="height:200px; border-radius:18px; border:1px solid oklch(0.9 0.012 85 / 0.14); background:repeating-linear-gradient(115deg, oklch(0.86 0.152 88 / 0.07) 0 2px, transparent 2px 11px); display:grid; place-items:center">
+                <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.72 0.015 85)">clear-line illustration — mathematics</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">05</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Language</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">Placeholder detail. Two or three sentences: the method, what it compresses, and the result you've seen so far.</p>
+            
+              <div style="height:200px; border-radius:18px; border:1px solid oklch(0.9 0.012 85 / 0.14); background:repeating-linear-gradient(115deg, oklch(0.86 0.152 88 / 0.07) 0 2px, transparent 2px 11px); display:grid; place-items:center">
+                <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.72 0.015 85)">clear-line illustration — language</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+      <div style="border:1px solid oklch(0.9 0.012 85 / 0.13); border-radius:26px; background:#1B1A13; overflow:hidden; transition:border-color .3s ease, background .3s ease" class="lm-card">
+        <button class="lm-head" data-r="head" style="all:unset; cursor:pointer; display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:28px; width:100%; padding:30px 34px; box-sizing:border-box">
+          <span style="font-family:'Space Mono',monospace; font-size:13px; letter-spacing:0.1em; color:oklch(0.86 0.152 88)">06</span>
+          <span style="display:grid; gap:8px">
+            <span style="font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:29px; letter-spacing:-0.02em; color:oklch(0.96 0.012 85)">Technical &amp; nonfiction writing</span>
+          </span>
+          <span style="width:44px; height:44px; border-radius:47% 53% 50% 50% / 54% 45% 55% 46%; background:oklch(0.86 0.152 88 / 0.14); display:grid; place-items:center; font-family:'Gabarito',system-ui,sans-serif; font-size:22px; font-weight:600; color:oklch(0.86 0.152 88); transform:rotate(0deg); transition:transform .35s cubic-bezier(.4,0,.2,1)" class="lm-icon" class="lm-icon">+</span>
+        </button>
+        <div class="lm-panel" style="max-height:0; opacity:0; overflow:hidden; transition:max-height .45s cubic-bezier(.4,0,.2,1), opacity .35s ease">
+          <div data-r="detail" style="padding:4px 34px 34px 126px; display:grid; gap:22px">
+            <p style="margin:0; font-size:19px; line-height:1.6; font-weight:300; color:oklch(0.85 0.012 85); max-width:60ch; text-wrap:pretty">Placeholder detail. Two or three sentences: the method, what it compresses, and the result you've seen so far.</p>
+            
+              <div style="height:200px; border-radius:18px; border:1px solid oklch(0.9 0.012 85 / 0.14); background:repeating-linear-gradient(115deg, oklch(0.86 0.152 88 / 0.07) 0 2px, transparent 2px 11px); display:grid; place-items:center">
+                <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.72 0.015 85)">clear-line illustration — writing</span>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" data-r="pad" style="max-width:1180px; margin:0 auto; padding:80px 40px 120px; position:relative; z-index:2">
+    <div data-r="split" data-r2="cta" style="border-radius:40px; background:oklch(0.86 0.152 88); color:#16150F; padding:66px 60px; display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:56px; align-items:center; position:relative; overflow:hidden">
+      <div style="position:absolute; right:-90px; bottom:-140px; width:340px; height:340px; border-radius:48% 52% 40% 60% / 52% 46% 54% 48%; background:oklch(0.9 0.13 90)"></div>
+      <div style="position:relative">
+        <h2 style="font-family:'Gabarito',system-ui,sans-serif; font-weight:700; font-size:clamp(30px,3.6vw,46px); line-height:1.04; letter-spacing:-0.03em; margin:0 0 16px; max-width:22ch">Let's connect.</h2>
+      </div>
+      <div style="position:relative; display:grid; gap:12px; justify-items:start">
+        <a href="mailto:hello@lightmode.org" style="border:none; font-family:'Gabarito',system-ui,sans-serif; font-weight:600; font-size:16px; background:#16150F; color:oklch(0.86 0.152 88); padding:15px 30px; border-radius:999px" class="lm-cta-dark">Send us a message</a>
+        <span style="font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:oklch(0.32 0.03 80)">Or subscribe to quarterly updates.</span>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid oklch(0.9 0.012 85 / 0.1); position:relative; z-index:2">
+    <div data-r="pad" style="max-width:1180px; margin:0 auto; padding:32px 40px 44px; display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:oklch(0.6 0.015 85)">
+      <span>Lightmode — polymath learning research</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</div>
+<script>
+  (function () {
+    const heads = Array.from(document.querySelectorAll('.lm-head'));
+    const timers = new WeakMap();
+    const panelOf = (btn) => btn.nextElementSibling;
+
+    const closePanel = (btn) => {
+      if (!btn.classList.contains('is-open')) return;
+      const panel = panelOf(btn);
+      clearTimeout(timers.get(btn));
+      // A settled panel sits at max-height:none; re-pin it so the collapse animates.
+      if (panel.style.maxHeight === 'none') {
+        panel.style.maxHeight = panel.firstElementChild.scrollHeight + 'px';
+        void panel.offsetHeight;
+      }
+      requestAnimationFrame(() => { panel.style.maxHeight = '0px'; panel.style.opacity = '0'; });
+      btn.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+    };
+
+    const openPanel = (btn) => {
+      const panel = panelOf(btn);
+      panel.style.maxHeight = panel.firstElementChild.scrollHeight + 'px';
+      panel.style.opacity = '1';
+      btn.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      timers.set(btn, setTimeout(() => {
+        if (btn.classList.contains('is-open')) panel.style.maxHeight = 'none';
+      }, 500));
+    };
+
+    heads.forEach(btn => {
+      btn.setAttribute('aria-expanded', 'false');
+      btn.addEventListener('click', () => {
+        const wasOpen = btn.classList.contains('is-open');
+        // Only one panel is open at a time.
+        heads.forEach(other => { if (other !== btn) closePanel(other); });
+        wasOpen ? closePanel(btn) : openPanel(btn);
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      heads.forEach(btn => {
+        if (!btn.classList.contains('is-open')) return;
+        const panel = panelOf(btn);
+        if (panel.style.maxHeight !== 'none') panel.style.maxHeight = panel.firstElementChild.scrollHeight + 'px';
+      });
+    });
+  })();
+</script>
+</body>
+</html>

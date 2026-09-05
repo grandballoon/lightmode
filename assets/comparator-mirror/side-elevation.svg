@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="cm-side" viewBox="0 0 480 360" width="480" height="360" role="img" aria-label="Side elevation of the A5 comparator mirror latched to a notebook: a leaf overhangs the page at 90 degrees and a rod at 45 degrees carries a small circular mirror facing the leaf.">
+  <style>
+    #cm-side .fx{fill:#16150F;stroke:#F5F1E9;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+    #cm-side .hair{fill:none;stroke:#9C988E;stroke-width:1;stroke-linecap:round}
+    #cm-side .lead{fill:none;stroke:#9C988E;stroke-width:1;stroke-linecap:round}
+    #cm-side .amb{fill:#FACA47}
+    #cm-side .ambln{fill:none;stroke:#FACA47;stroke-width:1.4;stroke-linecap:round}
+    #cm-side .t{font-family:'Space Mono',ui-monospace,SFMono-Regular,monospace;font-size:10px;letter-spacing:1.1px;fill:#A9A49A}
+    #cm-side .ta{font-family:'Space Mono',ui-monospace,SFMono-Regular,monospace;font-size:13px;letter-spacing:1px;fill:#FACA47}
+  </style>
+  <rect x="0.5" y="0.5" width="479" height="359" rx="18" fill="#1B1A13" stroke="#EBE7DF" stroke-opacity="0.14"/>
+
+  <!-- desk -->
+  <line class="hair" x1="34" y1="340" x2="446" y2="340"/>
+
+  <!-- notebook seen edge on: page block between two covers -->
+  <rect class="fx" x="330" y="78" width="14" height="252"/>
+  <g class="hair" opacity="0.75">
+    <line x1="333.5" y1="84" x2="333.5" y2="324"/>
+    <line x1="336.5" y1="84" x2="336.5" y2="324"/>
+    <line x1="339.5" y1="84" x2="339.5" y2="324"/>
+    <line x1="342" y1="84" x2="342" y2="324"/>
+  </g>
+
+  <!-- clamp plate against the back cover; no top edge, it folds into the leaf -->
+  <path class="fx" d="M344 78 L344 330 L353 330 L353 78"/>
+
+  <!-- spring cradle -->
+  <path class="fx" d="M316 322 L326 322 L326 330 L353 330 L353 340 L316 340 Z"/>
+  <rect class="amb" x="326" y="322" width="4" height="8"/>
+
+  <!-- the overhang leaf: 90 degrees off the page, A5 long -->
+  <rect class="fx" x="152" y="69" width="201" height="9" rx="4.5"/>
+
+  <!-- sliding collar and rod at 45 degrees, close to the vertex -->
+  <rect class="fx" x="292" y="78" width="16" height="10" rx="1.5"/>
+  <circle class="amb" cx="300" cy="83" r="2.4"/>
+  <path class="fx" d="M298.23 86.23 L254.23 130.23 L257.77 133.77 L301.77 89.77 Z"/>
+
+  <!-- circular mirror, face square to the rod so it looks back at the leaf -->
+  <g transform="rotate(45 256 132)">
+    <ellipse class="fx" cx="256" cy="132" rx="23.5" ry="5.2"/>
+    <ellipse cx="256" cy="132" rx="21" ry="3.4" fill="#FACA47" stroke="#F5F1E9" stroke-width="1.6"/>
+  </g>
+
+  <!-- angles -->
+  <path class="ambln" d="M312 78 A18 18 0 0 0 330 96"/>
+  <text class="ta" x="298" y="116">90&#176;</text>
+  <path class="ambln" d="M270 78 A30 30 0 0 0 278.79 99.21"/>
+  <text class="ta" x="234" y="92">45&#176;</text>
+
+  <!-- callouts -->
+  <path class="lead" d="M210 69 L210 50"/>
+  <text class="t" x="210" y="44" text-anchor="middle">LEAF</text>
+
+  <path class="lead" d="M238 149 L196 186 L150 186"/>
+  <text class="t" x="146" y="190" text-anchor="end">&#216;34 MIRROR</text>
+
+  <path class="lead" d="M349 232 L392 232"/>
+  <text class="t" x="396" y="236">CLAMP</text>
+  <text class="t" x="396" y="249">PLATE</text>
+
+  <path class="lead" d="M316 326 L250 300"/>
+  <text class="t" x="246" y="304" text-anchor="end">CRADLE</text>
+
+  <path class="lead" d="M330 270 L270 270"/>
+  <text class="t" x="266" y="274" text-anchor="end">A5 NOTEBOOK</text>
+
+  <text class="t" x="34" y="354">SIDE ELEVATION</text>
+</svg>
